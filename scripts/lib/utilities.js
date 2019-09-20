@@ -3,7 +3,6 @@
  */
 var fs = require('fs');
 var path = require("path");
-var xml2js = require('xml2js').parseString;
 
 fs.ensureDirSync = function (dir) {
   if (!fs.existsSync(dir)) {
@@ -20,12 +19,14 @@ fs.ensureDirSync = function (dir) {
 module.exports = {
   /**
      * Used to get the name of the application as defined in the config.xml.
+     *
+     * @param {object} context - The Cordova context.
+     * @returns {string} The value of the name element in config.xml.
      */
-  getAppName: function(cb){
-      var xml = fs.readFileSync("config.xml", 'utf-8');
-      xml2js(xml, function(err, result){
-          cb(result.widget.name[0]);
-      });
+  getAppName: function (context) {
+    var ConfigParser = require("cordova-lib").configparser;
+    var config = new ConfigParser("config.xml");
+    return config.name();
   },
 
   /**

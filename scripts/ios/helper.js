@@ -13,11 +13,15 @@ module.exports = {
 
     /**
      * Used to get the path to the XCode project's .pbxproj file.
+     *
+     * @param {object} context - The Cordova context.
+     * @returns The path to the XCode project's .pbxproj file.
      */
-    getXcodeProjectPath: function (cb) {
-        utilities.getAppName(function(appName){
-            cb(path.join("platforms", "ios", appName + ".xcodeproj", "project.pbxproj"));
-        });
+    getXcodeProjectPath: function (context) {
+
+        var appName = utilities.getAppName(context);
+
+        return path.join("platforms", "ios", appName + ".xcodeproj", "project.pbxproj");
     },
 
     /**
@@ -34,7 +38,7 @@ module.exports = {
         xcodeProject.parseSync();
 
         // Build the body of the script to be executed during the build phase.
-        // var script = '"' + '\\"${PODS_ROOT}/Fabric/run\\"' + '"';
+        var script = '"' + '\\"${PODS_ROOT}/Fabric/run\\"' + '"';
 
         // Generate a unique ID for our new build phase.
         var id = xcodeProject.generateUuid();
@@ -48,7 +52,7 @@ module.exports = {
             outputPaths: [],
             runOnlyForDeploymentPostprocessing: 0,
             shellPath: "/bin/sh",
-            // shellScript: script,
+            shellScript: script,
             showEnvVarsInLog: 0
         };
 
@@ -166,20 +170,5 @@ module.exports = {
 
         // Finally, write the .pbxproj back out to disk.
         fs.writeFileSync(xcodeProjectPath, xcodeProject.writeSync());
-    },
-    stripDebugSymbols: function(){
-        var podFilePath = 'platforms/ios/Podfile',
-            podFile = fs.readFileSync(podFilePath).toString();
-        if(!podFile.match('DEBUG_INFORMATION_FORMAT')){
-            podFile += "\npost_install do |installer|\n" +
-                "    installer.pods_project.targets.each do |target|\n" +
-                "        target.build_configurations.each do |config|\n" +
-                "            config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'\n" +
-                "        end\n" +
-                "    end\n" +
-                "end";
-            fs.writeFileSync(podFilePath, podFile);
-            console.log('cordova-plugin-firebasex: Applied IOS_STRIP_DEBUG to Podfile');
-        }
     }
 };
