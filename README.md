@@ -98,7 +98,7 @@ The following plugin variables are use to specify the follow Cocoapods dependenc
 - `IOS_FIREBASE_MESSAGING_VERSION` => `Firebase/Messaging`
 - `IOS_FIREBASE_PERFORMANCE_VERSION` => `Firebase/Performance`
 - `IOS_FIREBASE_REMOTECONFIG_VERSION` => `Firebase/RemoteConfig`
-- `IOS_FABRIC_VERSION` => `Fabric`
+<!-- - `IOS_FABRIC_VERSION` => `Fabric` -->
 - `IOS_CRASHLYTICS_VERSION` => `Crashlytics`
 
 For example, to explicitly specify all the component versions at plugin install time:
@@ -118,7 +118,7 @@ For example, to explicitly specify all the component versions at plugin install 
         --variable IOS_FIREBASE_MESSAGING_VERSION=5.20.2 \
         --variable IOS_FIREBASE_PERFORMANCE_VERSION=5.20.2 \
         --variable IOS_FIREBASE_REMOTECONFIG_VERSION=5.20.2 \
-        --variable IOS_FABRIC_VERSION=1.9.0 \
+        <!-- --variable IOS_FABRIC_VERSION=1.9.0 \ -->
         --variable IOS_CRASHLYTICS_VERSION=3.12.0
 
 ## Usage notes

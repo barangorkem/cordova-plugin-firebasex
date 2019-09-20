@@ -113,7 +113,7 @@
 		<preference name="IOS_FIREBASE_MESSAGING_VERSION" default="6.3.0" />
 		<preference name="IOS_FIREBASE_PERFORMANCE_VERSION" default="6.3.0" />
 		<preference name="IOS_FIREBASE_REMOTECONFIG_VERSION" default="6.3.0" />
-		<preference name="IOS_FABRIC_VERSION" default="1.9.0" />
+		<!-- <preference name="IOS_FABRIC_VERSION" default="1.9.0" /> -->
 		<preference name="IOS_CRASHLYTICS_VERSION" default="3.12.0" />
 
 		<pod name="Firebase/Core" spec="$IOS_FIREBASE_CORE_VERSION" />
@@ -121,7 +121,7 @@
 		<pod name="Firebase/Messaging" spec="$IOS_FIREBASE_MESSAGING_VERSION" />
 		<pod name="Firebase/Performance" spec="$IOS_FIREBASE_PERFORMANCE_VERSION" />
 		<pod name="Firebase/RemoteConfig" spec="$IOS_FIREBASE_REMOTECONFIG_VERSION" />
-		<pod name="Fabric" spec="$IOS_FABRIC_VERSION" />
+		<!-- <pod name="Fabric" spec="$IOS_FABRIC_VERSION" /> -->
 		<pod name="Crashlytics" spec="$IOS_CRASHLYTICS_VERSION" />
 
 	</platform>
